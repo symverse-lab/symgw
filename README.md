@@ -1,4 +1,4 @@
-# symgw
+# Symverse BlockChain Nodes Proxy
 
 symverse blockchain proxy service
 
