@@ -1,0 +1,225 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Gsym API 문서입니다.",
+        "title": "SYM-GW API Docs",
+        "contact": {},
+        "license": {},
+        "version": "1.0.0"
+    },
+    "host": "testnet-gateway.symverse.com",
+    "paths": {
+        "/health": {
+            "get": {
+                "description": "SYM-GW 애플리케이션의 상태를 체크합니다.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "SYM-GW 애플리케이션의 상태를 체크합니다."
+            }
+        },
+        "/v1/bootnode/closeNodes": {
+            "get": {
+                "description": "BootNode API 요청하여 Node 정보를 제공합니다.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "BootNode API 요청하여 가장 근접한 Node 정보를 제공합니다.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/common.JsonRpcResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/bootnode/nodes": {
+            "get": {
+                "description": "BootNode API 요청하여 Node 정보를 제공합니다.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "BootNode API 요청하여 Node 정보를 제공합니다.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/common.JsonRpcResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/rpc/node/{number}": {
+            "post": {
+                "description": "WorkNode로 HTTP JSON-RPC 요청을 Proxy 합니다.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "WorkNode로 WebSocket JSON-RPC 요청을 Proxy 합니다.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Node Number",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Json-Rpc Request",
+                        "name": "message",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/common.JsonRpcRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/common.JsonRpcResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/rpc/node/{number}/ws": {
+            "post": {
+                "description": "WorkNode로 WebSocket JSON-RPC 요청을 Proxy 합니다.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "WorkNode로 WebSocket JSON-RPC 요청을 Proxy 합니다.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Node Number",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Json-Rpc Request",
+                        "name": "message",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/common.JsonRpcRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/common.JsonRpcResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/rpc/nodes": {
+            "get": {
+                "description": "Proxy를 제공할 URL 정보가 있는 WorkNode 리스트를 요청합니다.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get Static WorkNodes",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/config.WorkNode"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "common.JsonRpcRequest": {
+            "type": "object",
+            "required": [
+                "id",
+                "jsonrpc",
+                "method",
+                "params"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "jsonrpc": {
+                    "type": "string"
+                },
+                "method": {
+                    "type": "string"
+                },
+                "params": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "common.JsonRpcResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "jsonrpc": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "object"
+                }
+            }
+        },
+        "config.WorkNode": {
+            "type": "object",
+            "properties": {
+                "HttpUrl": {
+                    "type": "string"
+                },
+                "number": {
+                    "type": "integer"
+                },
+                "symId": {
+                    "type": "string"
+                },
+                "wsUrl": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,149 @@
+definitions:
+  common.JsonRpcRequest:
+    properties:
+      id:
+        type: integer
+      jsonrpc:
+        type: string
+      method:
+        type: string
+      params:
+        items:
+          type: string
+        type: array
+    required:
+    - id
+    - jsonrpc
+    - method
+    - params
+    type: object
+  common.JsonRpcResponse:
+    properties:
+      id:
+        type: integer
+      jsonrpc:
+        type: string
+      result:
+        type: object
+    type: object
+  config.WorkNode:
+    properties:
+      HttpUrl:
+        type: string
+      number:
+        type: integer
+      symId:
+        type: string
+      wsUrl:
+        type: string
+    type: object
+host: testnet-gateway.symverse.com
+info:
+  contact: {}
+  description: Gsym API 문서입니다.
+  license: {}
+  title: SYM-GW API Docs
+  version: 1.0.0
+paths:
+  /health:
+    get:
+      consumes:
+      - application/json
+      description: SYM-GW 애플리케이션의 상태를 체크합니다.
+      produces:
+      - application/json
+      summary: SYM-GW 애플리케이션의 상태를 체크합니다.
+  /v1/bootnode/closeNodes:
+    get:
+      consumes:
+      - application/json
+      description: BootNode API 요청하여 Node 정보를 제공합니다.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/common.JsonRpcResponse'
+      summary: BootNode API 요청하여 가장 근접한 Node 정보를 제공합니다.
+  /v1/bootnode/nodes:
+    get:
+      consumes:
+      - application/json
+      description: BootNode API 요청하여 Node 정보를 제공합니다.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/common.JsonRpcResponse'
+      summary: BootNode API 요청하여 Node 정보를 제공합니다.
+  /v1/rpc/node/{number}:
+    post:
+      consumes:
+      - application/json
+      description: WorkNode로 HTTP JSON-RPC 요청을 Proxy 합니다.
+      parameters:
+      - description: Node Number
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: Json-Rpc Request
+        in: body
+        name: message
+        required: true
+        schema:
+          $ref: '#/definitions/common.JsonRpcRequest'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/common.JsonRpcResponse'
+      summary: WorkNode로 WebSocket JSON-RPC 요청을 Proxy 합니다.
+  /v1/rpc/node/{number}/ws:
+    post:
+      consumes:
+      - application/json
+      description: WorkNode로 WebSocket JSON-RPC 요청을 Proxy 합니다.
+      parameters:
+      - description: Node Number
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: Json-Rpc Request
+        in: body
+        name: message
+        required: true
+        schema:
+          $ref: '#/definitions/common.JsonRpcRequest'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/common.JsonRpcResponse'
+      summary: WorkNode로 WebSocket JSON-RPC 요청을 Proxy 합니다.
+  /v1/rpc/nodes:
+    get:
+      consumes:
+      - application/json
+      description: Proxy를 제공할 URL 정보가 있는 WorkNode 리스트를 요청합니다.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/config.WorkNode'
+            type: array
+      summary: Get Static WorkNodes
+swagger: "2.0"
