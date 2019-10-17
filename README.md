@@ -1,6 +1,6 @@
 # symgw
 
-symverse gateway & proxy 제어 역할을 하는 서비스입니다.
+symverse blockchain proxy service
 
 ## Getting Started
 
@@ -30,10 +30,10 @@ COMMANDS:
    help, h  Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
-   --env FILE, -E FILE  Load configuration from FILE (default: ".env")
-   --help, -h           show help
-   --version, -v        print the version
-
+   --env FILE     Load configuration from FILE (default: "env.yaml")
+   --mode debug   default debug mode. Switch to `release` mode in production. (default: "debug")
+   --help, -h     show help
+   --version, -v  print the version
 ```
 
 ### env file option
@@ -46,34 +46,38 @@ config 파일은 `yaml` 형태로 저장해야 하며 아래와 같은 예제로
 // example config.yaml 
 
 database:
-  driver: "leveldb" ( default: leveldb ) // leveldb, redis
+  driver: "leveldb" (default: leveldb) // leveldb, redis
 cache: 
-  interval: 15 ( default: 5 ) // 분단위
-  use: false // (default: false
+  interval: 15 (default: 5) // 분단위
+  use: false // (default: false)
 host:
-  address: "0.0.0.0" ( default: localhost )
-  port: 80 ( default: 8080 )
+  address: "0.0.0.0" (default: localhost)
+  port: 80 (default: 8080)
 bootNodes:
   - httpUrl: "http://10.100.1.199:9999" 
 workNodes: 
   - httpUrl: "http:///127.0.0.1:8545"
     wsUrl: "http:///127.0.0.1:8546"
   - httpUrl: "http:///10.100.1.244:8545"
-    wsUrl: "http:///10.100.1.244:8546"
 ```
 
-- `database.driver` - api request 결과의 cache를 저장할 공간입니다.
+- `database.driver` - cache driver
+- `database.host` - redis ip
+- `database.port` - redis port
+- `database.password` - redis password
+
 - `cache.interval` - cache가 만료되는 시간입니다. ( 분단위 )
-- `host.address` - symgw app 의 http Listen 할 host 입니다.
-- `host.port` - symgw app 의 http Listen 할 port 입니다.
-- `bootNodes.httpUrl` - bootnode를 proxy 할 노드 rpc addr 입니다.
-- `workNodes.httpUrl` - gsym node를 proxy 할 노드 rpc addr 입니다.
-- `workNodes.wsUrl` - gsym node를 proxy 할 노드 ws rpc addr 입니다.
+- `cache.use` - cache 사용 여부
+- `host.address` - symgw http Listen host
+- `host.port` - symgw http Listen port
+- `bootNodes.httpUrl` - bootnode의 rpc addr 입니다.
+- `workNodes.httpUrl` - gsym node의 rpc addr 입니다.
+- `workNodes.symId` -  gsym node의 based symId 입니다.
 
 
 ## Node Api & Bootnode Api Proxy list
 
-symgw api 목록 입니다.
+symgw api
 
  `GET` /v1/rpc/nodes - env 파일에 저장된 workNodes의 전체 url 정보를 가져옵니다.
  
