@@ -12,10 +12,10 @@ type RpcWebSocketMessage struct {
 }
 
 type JsonRpcRequest struct {
-	JsonRpc string   `form:"jsonrpc" json:"jsonrpc" binding:"required",example:"2.0"`
-	Id      uint     `form:"id" json:"id" binding:"required",example:"1"`
-	Method  string   `form:"method" json:"method" binding:"required"`
-	Params  []string `form:"params" json:"params" binding:"required"`
+	JsonRpc string        `form:"jsonrpc" json:"jsonrpc" binding:"required",example:"2.0"`
+	Id      uint          `form:"id" json:"id" binding:"required",example:"1"`
+	Method  string        `form:"method" json:"method" binding:"required"`
+	Params  []interface{} `form:"params" json:"params" binding:"required"`
 }
 
 func (self *JsonRpcRequest) Bind(c *gin.Context) (interface{}, error) {
