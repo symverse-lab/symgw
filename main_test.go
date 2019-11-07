@@ -2,14 +2,14 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/gocheat/symgw/bootnode"
-	"github.com/gocheat/symgw/config"
-	"github.com/gocheat/symgw/rpcproxy"
 	"github.com/swaggo/files"
 	"github.com/swaggo/gin-swagger"
+	"github.com/symverse-lab/symgw/bootnode"
+	"github.com/symverse-lab/symgw/config"
+	"github.com/symverse-lab/symgw/rpcproxy"
 	"testing"
 
-	_ "github.com/gocheat/symgw/docs"
+	_ "github.com/symverse-lab/symgw/docs"
 )
 
 // @Summary SYM-GW 애플리케이션의 상태를 체크합니다.

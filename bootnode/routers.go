@@ -2,7 +2,7 @@ package bootnode
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/gocheat/symgw/common"
+	"github.com/symverse-lab/symgw/common"
 	"net/http"
 	"time"
 )

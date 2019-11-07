@@ -4,13 +4,13 @@ import (
 	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/gocheat/symgw/bootnode"
-	"github.com/gocheat/symgw/config"
-	"github.com/gocheat/symgw/config/db"
-	"github.com/gocheat/symgw/rpcproxy"
 	"github.com/spf13/viper"
 	"github.com/swaggo/files"
 	"github.com/swaggo/gin-swagger"
+	"github.com/symverse-lab/symgw/bootnode"
+	"github.com/symverse-lab/symgw/config"
+	"github.com/symverse-lab/symgw/config/db"
+	"github.com/symverse-lab/symgw/rpcproxy"
 	"gopkg.in/urfave/cli.v1"
 	"io"
 	"log"
@@ -20,7 +20,7 @@ import (
 	"syscall"
 	"time"
 
-	_ "github.com/gocheat/symgw/docs"
+	_ "github.com/symverse-lab/symgw/docs"
 )
 
 const (

@@ -3,9 +3,8 @@ package common
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
-	"github.com/gocheat/symgw/config"
-	"github.com/gocheat/symgw/config/db"
+	"github.com/symverse-lab/symgw/config"
+	"github.com/symverse-lab/symgw/config/db"
 	"log"
 	"net/http"
 	"time"
@@ -33,8 +32,6 @@ func NodeRpcRequest(url string, request *JsonRpcRequest, httpRequest *http.Reque
 		return nil, nil, err
 	}
 	defer res.Body.Close()
-
-	fmt.Print("??", res)
 
 	var data DynamicParameters
 	if err := json.NewDecoder(res.Body).Decode(&data); err != nil {

@@ -2,9 +2,9 @@ package bootnode
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/gocheat/symgw/common"
-	"github.com/gocheat/symgw/config"
-	"github.com/gocheat/symgw/config/db"
+	"github.com/symverse-lab/symgw/common"
+	"github.com/symverse-lab/symgw/config"
+	"github.com/symverse-lab/symgw/config/db"
 	"net/http"
 )
 

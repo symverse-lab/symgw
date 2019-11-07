@@ -185,7 +185,7 @@
                 "params": {
                     "type": "array",
                     "items": {
-                        "type": "string"
+                        "type": "\u0026{%!s(token.Pos=466) %!s(*ast.FieldList=\u0026{475 [] 476}) %!s(bool=false)}"
                     }
                 }
             }
@@ -193,6 +193,9 @@
         "common.JsonRpcResponse": {
             "type": "object",
             "properties": {
+                "error": {
+                    "type": "object"
+                },
                 "id": {
                     "type": "integer"
                 },
@@ -207,7 +210,7 @@
         "config.WorkNode": {
             "type": "object",
             "properties": {
-                "HttpUrl": {
+                "httpUrl": {
                     "type": "string"
                 },
                 "number": {

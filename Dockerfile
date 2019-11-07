@@ -1,7 +1,7 @@
 FROM golang:1.13
 LABEL maintainer="gocheat <itsinil@gmail.com>"
 
-WORKDIR /app/src/github.com/gocheat/symgw
+WORKDIR /app/src/github.com/symverse-lab/symgw
 COPY . .
 ENV GOPATH="/app"
 ENV PATH="$PATH:$GOPATH/bin"

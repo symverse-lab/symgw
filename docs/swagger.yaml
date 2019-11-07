@@ -9,7 +9,7 @@ definitions:
         type: string
       params:
         items:
-          type: string
+          type: '&{%!s(token.Pos=466) %!s(*ast.FieldList=&{475 [] 476}) %!s(bool=false)}'
         type: array
     required:
     - id
@@ -19,6 +19,8 @@ definitions:
     type: object
   common.JsonRpcResponse:
     properties:
+      error:
+        type: object
       id:
         type: integer
       jsonrpc:
@@ -28,7 +30,7 @@ definitions:
     type: object
   config.WorkNode:
     properties:
-      HttpUrl:
+      httpUrl:
         type: string
       number:
         type: integer
