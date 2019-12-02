@@ -58,7 +58,10 @@ bootNodes:
 workNodes: 
   - httpUrl: "http:///127.0.0.1:8545"
     wsUrl: "http:///127.0.0.1:8546"
+    symId: "0x00021000000000010002"
   - httpUrl: "http:///10.100.1.244:8545"
+    wsUrl: "http:///10.100.1.244:8546"
+    symId: "0x00021000000000020002"
 ```
 
 - `database.driver` - cache driver
